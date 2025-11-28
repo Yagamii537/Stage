@@ -9,6 +9,7 @@ use App\Livewire\Responsables\FormResponsable;
 use App\Livewire\Eventos\IndexEventos;
 use App\Livewire\Eventos\FormEvento;
 use App\Http\Controllers\EventoPdfController;
+use App\Livewire\Reportes\SalidasEquipos;
 
 Route::get('/', Home::class)->name('home');
 
@@ -33,6 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/eventos/{evento}/pdf', [EventoPdfController::class, 'show'])
         ->name('eventos.pdf');
+
+    Route::get('/reportes/salidas', SalidasEquipos::class)->name('reportes.salidas');
 });
 
 require __DIR__ . '/auth.php';

@@ -166,6 +166,10 @@
             class="{{ request()->routeIs('eventos.*') ? 'active' : '' }}">
                 🎫 Eventos
             </a>
+            <a href="{{ route('reportes.salidas') }}"
+            class="{{ request()->routeIs('reportes.salidas') ? 'active' : '' }}">
+                📄 Reporte de salidas
+            </a>
         </nav>
 
 
