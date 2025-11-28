@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('tipo'); // consola, micro, cable, luz, cámara...
+            $table->string('marca')->nullable();
+            $table->string('modelo')->nullable();
+            $table->string('num_serie')->nullable();
+            $table->enum('estado', ['disponible', 'en_evento', 'mantenimiento', 'perdido'])
+                ->default('disponible');
+            $table->integer('cantidad_total')->default(0);
+            $table->integer('cantidad_disponible')->default(0);
+            $table->string('foto')->nullable(); // ruta de imagen si quieres
+            $table->string('qr_code')->nullable();
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }

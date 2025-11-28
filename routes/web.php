@@ -1,15 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Dashboard\Home;
+use App\Livewire\Equipos\IndexEquipos;
+use App\Livewire\Equipos\FormEquipo;
 
-Route::view('/', 'welcome');
+Route::get('/', Home::class)->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+    Route::get('/dashboard', Home::class)->name('dashboard');
 
-require __DIR__.'/auth.php';
+    // Equipos
+    Route::get('/equipos', IndexEquipos::class)->name('equipos.index');
+    Route::get('/equipos/crear', FormEquipo::class)->name('equipos.create');
+    Route::get('/equipos/{equipo}/editar', FormEquipo::class)->name('equipos.edit');
+});
+
+require __DIR__ . '/auth.php';
