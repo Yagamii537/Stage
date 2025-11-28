@@ -132,6 +132,8 @@
                 padding: .7rem 1rem;
                 white-space: nowrap;
             }
+
+
         }
     </style>
 </head>
@@ -149,18 +151,26 @@
 
         <nav class="stage-menu">
             <a href="{{ route('dashboard') }}"
-               class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+            class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 📊 Dashboard
             </a>
             <a href="{{ route('equipos.index') }}"
-               class="{{ request()->routeIs('equipos.*') ? 'active' : '' }}">
+            class="{{ request()->routeIs('equipos.*') ? 'active' : '' }}">
                 🎛️ Equipos
             </a>
-            {{-- Aquí luego Eventos, Reportes, etc. --}}
+            <a href="{{ route('responsables.index') }}"
+            class="{{ request()->routeIs('responsables.*') ? 'active' : '' }}">
+                👤 Responsables
+            </a>
+            <a href="{{ route('eventos.index') }}"
+            class="{{ request()->routeIs('eventos.*') ? 'active' : '' }}">
+                🎫 Eventos
+            </a>
         </nav>
 
+
         <div class="stage-footer">
-            &copy; {{ date('Y') }} Stage · Producción técnica Ec.
+            &copy; {{ date('Y') }} Xerat Code Ec.
         </div>
     </aside>
 

@@ -6,20 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('equipo_evento', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('evento_id')->constrained('eventos')->cascadeOnDelete();
+            $table->foreignId('equipo_id')->constrained('equipos')->cascadeOnDelete();
+            $table->unsignedInteger('cantidad_salida');
+            $table->unsignedInteger('cantidad_retorno')->default(0);
+            $table->enum('estado_retorno', ['pendiente', 'ok', 'danado', 'perdido', 'faltante'])
+                ->default('pendiente');
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('equipo_evento');

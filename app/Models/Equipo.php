@@ -19,4 +19,16 @@ class Equipo extends Model
         'qr_code',
         'descripcion',
     ];
+
+    public function eventos()
+    {
+        return $this->belongsToMany(Evento::class, 'equipo_evento')
+            ->withPivot([
+                'cantidad_salida',
+                'cantidad_retorno',
+                'estado_retorno',
+                'observaciones',
+            ])
+            ->withTimestamps();
+    }
 }
